@@ -1,3 +1,11 @@
+import sys
+import os
+
+# Add the script's directory to sys.path to resolve local imports (needed for Gunicorn/Render)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+if script_dir not in sys.path:
+    sys.path.insert(0, script_dir)
+
 from chatbot import chatbot
 # Monkey-patch jinja2 to export Markup (required by flask-recaptcha in modern jinja2 versions)
 import markupsafe
