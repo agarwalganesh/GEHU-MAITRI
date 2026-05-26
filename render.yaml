@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: gehu-chatbot
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python -m spacy download en_core_web_sm"
+    startCommand: "gunicorn --bind 0.0.0.0:$PORT \"CRCE Bot.app:app\""
+    envVars:
+      - key: DB_TYPE
+        value: sqlite
+      - key: SQLITE_DB_PATH
+        value: database.sqlite3
+      - key: FLASK_DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
