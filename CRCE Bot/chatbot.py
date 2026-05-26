@@ -1,6 +1,11 @@
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from chatterbot.trainers import ChatterBotCorpusTrainer
+import os
+
+# Resolve absolute path for database.sqlite3 in the parent (workspace root) directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.abspath(os.path.join(script_dir, '..', 'database.sqlite3')).replace('\\', '/')
 
 chatbot = ChatBot(
     'ChatBot for GEHU Enquiry',
@@ -12,7 +17,7 @@ chatbot = ChatBot(
             'maximum_similarity_threshold': 0.90
         }
     ],
-    database_uri='sqlite:///database.sqlite3'   
+    database_uri=f'sqlite:///{db_path}'   
 ) 
 trainer = ListTrainer(chatbot)
 
