@@ -5,3 +5,4 @@ ChatterBot==1.2.13
 spacy==3.8.13
 markupsafe
 gunicorn
+
